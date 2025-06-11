@@ -9,8 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      background: #ffffff; /* fundo branco */
+      color: #004d40; /* verde escuro */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,6 +21,8 @@
 
     header {
       margin-top: 40px;
+      color: #00796b; /* verde vibrante */
+      text-shadow: 0 0 5px #004d40;
     }
 
     h1 {
@@ -31,14 +33,15 @@
     h2 {
       font-size: 1.2rem;
       font-weight: normal;
-      color: #cccccc;
+      color: #004d40; /* verde escuro */
     }
 
     footer {
       margin-top: auto;
-      font-size: 0.8rem;
-      color: #aaa;
+      font-size: 0.9rem;
+      color: #00796b; /* verde vibrante */
       padding: 20px;
+      font-style: italic;
     }
 
     .chat-container {
@@ -46,6 +49,9 @@
       max-width: 800px;
       height: 600px;
       margin-top: 40px;
+      box-shadow: 0 0 15px rgba(0, 77, 64, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     iframe {
@@ -69,22 +75,24 @@
   <footer>
     Equipado com Eduk 1.0
   </footer>
-<<script>
-  window.botpressWebChat.init({
-    "composerPlaceholder": "Digite algo",
-    "botConversationDescription": "Assistente Virtual • Gerência de Educação de Sonora",
-    "botId": "edu",
-    "hostUrl": "https://cdn.botpress.cloud/webchat/v3.0",
-    "messagingUrl": "https://messaging.botpress.cloud",
-    "clientId": "edu",
-    "webhookId": "20250530143143-DL1SVUAK",
-    "showPoweredBy": false,
-    "className": "custom-bot",
-    "containerWidth": "100%",
-    "layoutWidth": "100%",
-    "hideWidget": false,
-    "disableAnimations": false
-  });
-</script>
-<script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>/body>
+
+  <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+  <script>
+    window.botpressWebChat.init({
+      composerPlaceholder: "Digite algo",
+      botConversationDescription: "Assistente Virtual • Gerência de Educação de Sonora",
+      botId: "edu",
+      hostUrl: "https://cdn.botpress.cloud/webchat/v3.0",
+      messagingUrl: "https://messaging.botpress.cloud",
+      clientId: "edu",
+      webhookId: "20250530143143-DL1SVUAK",
+      showPoweredBy: false,
+      className: "custom-bot",
+      containerWidth: "100%",
+      layoutWidth: "100%",
+      hideWidget: false,
+      disableAnimations: false
+    });
+  </script>
+</body>
 </html>
