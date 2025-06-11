@@ -8,9 +8,9 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff; /* fundo branco */
-      color: #004d40; /* verde escuro */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fdf9; /* branco clarinho, suave para os olhos */
+      color: #004d40; /* verde escuro para textos principais */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -60,6 +60,15 @@
       height: 100%;
       border-radius: 12px;
     }
+
+    /* CSS para forçar texto preto dentro do iframe (chat) */
+    /* OBS: você só consegue aplicar styles dentro do iframe se tiver controle no arquivo hospedado, 
+       mas algumas coisas podemos tentar via className do botpress. */
+
+    /* Aqui, aplicamos um estilo para o container do botpress para forçar texto preto */
+    .custom-bot * {
+      color: black !important;
+    }
   </style>
 </head>
 <body>
@@ -69,7 +78,7 @@
   </header>
 
   <div class="chat-container">
-    <iframe src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/30/14/20250530143143-HCRPYN8Y.json"></iframe>
+    <iframe src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/30/14/20250530143143-HCRPYN8Y.json" title="Edu Chat"></iframe>
   </div>
 
   <footer>
@@ -87,7 +96,7 @@
       clientId: "edu",
       webhookId: "20250530143143-DL1SVUAK",
       showPoweredBy: false,
-      className: "custom-bot",
+      className: "custom-bot", // aqui usamos essa classe para aplicar estilos gerais
       containerWidth: "100%",
       layoutWidth: "100%",
       hideWidget: false,
