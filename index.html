@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EDU - Inteligência Artificial Educacional</title>
   <style>
+    :root {
+      --verde-escuro: #004d40;
+      --verde-medio: #00796b;
+      --verde-claro: #e0f2f1;
+      --branco: #ffffff;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9fdf9; /* branco clarinho, suave para os olhos */
-      color: #004d40; /* verde escuro para textos principais */
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -20,38 +27,33 @@
     }
 
     header {
-      margin-top: 40px;
-      color: #00796b; /* verde vibrante */
-      text-shadow: 0 0 5px #004d40;
+      width: 100%;
+      padding: 30px 10px;
+      background-color: var(--verde-medio);
+      color: var(--branco);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       margin-bottom: 0.3rem;
     }
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: normal;
-      color: #004d40; /* verde escuro */
-    }
-
-    footer {
-      margin-top: auto;
-      font-size: 0.9rem;
-      color: #00796b; /* verde vibrante */
-      padding: 20px;
-      font-style: italic;
+      margin: 0;
     }
 
     .chat-container {
-      width: 100%;
+      width: 95%;
       max-width: 800px;
       height: 600px;
       margin-top: 40px;
-      box-shadow: 0 0 15px rgba(0, 77, 64, 0.3);
+      box-shadow: 0 0 15px rgba(0, 77, 64, 0.2);
       border-radius: 12px;
       overflow: hidden;
+      background-color: var(--branco);
     }
 
     iframe {
@@ -61,11 +63,24 @@
       border-radius: 12px;
     }
 
-    /* CSS para forçar texto preto dentro do iframe (chat) */
-    /* OBS: você só consegue aplicar styles dentro do iframe se tiver controle no arquivo hospedado, 
-       mas algumas coisas podemos tentar via className do botpress. */
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--verde-medio);
+      font-style: italic;
+    }
 
-    /* Aqui, aplicamos um estilo para o container do botpress para forçar texto preto */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .chat-container {
+        height: 500px;
+      }
+    }
+
     .custom-bot * {
       color: black !important;
     }
@@ -96,7 +111,7 @@
       clientId: "edu",
       webhookId: "20250530143143-DL1SVUAK",
       showPoweredBy: false,
-      className: "custom-bot", // aqui usamos essa classe para aplicar estilos gerais
+      className: "custom-bot",
       containerWidth: "100%",
       layoutWidth: "100%",
       hideWidget: false,
