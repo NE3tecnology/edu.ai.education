@@ -56,19 +56,6 @@
       background-color: var(--branco);
     }
 
-    .video-container {
-      width: 95%;
-      max-width: 1000px;
-      margin: 40px auto;
-    }
-
-    video {
-      width: 100%;
-      max-height: 500px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 77, 64, 0.3);
-    }
-
     iframe {
       border: none;
       width: 100%;
@@ -76,8 +63,35 @@
       border-radius: 12px;
     }
 
-    footer {
-      display: none; /* Oculta o footer anterior com "Equipado com Eduk 1.0" */
+    .video-container {
+      margin-top: 40px;
+      width: 95%;
+      max-width: 1000px;
+      height: auto;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 77, 64, 0.3);
+    }
+
+    .reload-button {
+      margin: 40px 0;
+      padding: 12px 30px;
+      font-size: 1rem;
+      background-color: var(--verde-medio);
+      color: var(--branco);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .reload-button:hover {
+      background-color: var(--verde-escuro);
     }
 
     @media (max-width: 600px) {
@@ -87,10 +101,6 @@
 
       .chat-container {
         height: 500px;
-      }
-
-      video {
-        max-height: 300px;
       }
     }
 
@@ -105,18 +115,18 @@
     <h2>INTELIGÊNCIA ARTIFICIAL DA GERÊNCIA DE EDUCAÇÃO DE SONORA</h2>
   </header>
 
-  <!-- CHATBOT -->
   <div class="chat-container">
     <iframe src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/30/14/20250530143143-HCRPYN8Y.json" title="Edu Chat"></iframe>
   </div>
 
-  <!-- -->
   <div class="video-container">
-    <video controls autoplay muted loop playsinline>
-      <source src="Violeta%20e%20Verde%20Empresa%20Apresenta%C3%A7%C3%A3o%20Animada%20Empresarial%20de%20Startup.mp4" type="video/mp4">
+    <video autoplay muted loop>
+      <source src="animacoes/Violeta e Verde Empresa Apresentação Animada Empresarial de Startup.mp4" type="video/mp4">
       Seu navegador não suporta vídeos HTML5.
     </video>
   </div>
+
+  <button class="reload-button" onclick="location.reload()">Nova Conversa</button>
 
   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
   <script>
