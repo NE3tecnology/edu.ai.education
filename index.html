@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -56,6 +56,18 @@
       background-color: var(--branco);
     }
 
+    .video-container {
+      width: 95%;
+      max-width: 800px;
+      margin-top: 30px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
     iframe {
       border: none;
       width: 100%;
@@ -92,12 +104,22 @@
     <h2>INTELIGÊNCIA ARTIFICIAL DA GERÊNCIA DE EDUCAÇÃO DE SONORA</h2>
   </header>
 
+  <!-- VÍDEO DE APRESENTAÇÃO -->
+  <div class="video-container">
+    <h2>🎬 Apresentação do Eduk 1.0</h2>
+    <video controls autoplay muted loop playsinline>
+      <source src="Violeta%20e%20Verde%20Empresa%20Apresenta%C3%A7%C3%A3o%20Animada%20Empresarial%20de%20Startup.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos HTML5.
+    </video>
+  </div>
+
+  <!-- CHATBOT -->
   <div class="chat-container">
     <iframe src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/30/14/20250530143143-HCRPYN8Y.json" title="Edu Chat"></iframe>
   </div>
 
   <footer>
-    Equipado com Eduk 1.5
+    Equipado com Eduk 1.0
   </footer>
 
   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
