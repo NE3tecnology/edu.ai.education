@@ -77,8 +77,9 @@
       box-shadow: 0 0 15px rgba(0, 77, 64, 0.3);
     }
 
-    .reload-button {
-      margin: 40px 0;
+    .reload-button,
+    .voice-button {
+      margin: 20px 10px;
       padding: 12px 30px;
       font-size: 1rem;
       background-color: var(--verde-medio);
@@ -90,7 +91,8 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .reload-button:hover {
+    .reload-button:hover,
+    .voice-button:hover {
       background-color: var(--verde-escuro);
     }
 
@@ -106,6 +108,41 @@
 
     .custom-bot * {
       color: black !important;
+    }
+
+    /* Bolinha animada de voz */
+    #voice-indicator {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle at 30% 30%, #00e0ff, #00796b);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .talking {
+      animation: pulsar 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulsar {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+      }
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+      }
     }
   </style>
 </head>
@@ -127,6 +164,10 @@
   </div>
 
   <button class="reload-button" onclick="location.reload()">Nova Conversa</button>
+  <button class="voice-button" onclick="iniciarReconhecimento()">🎤 Ativar Modo Voz</button>
+
+  <!-- Bolinha de voz -->
+  <div id="voice-indicator"></div>
 
   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
   <script>
@@ -146,5 +187,77 @@
       disableAnimations: false
     });
   </script>
+
+  <!-- VOZ E ESCUTA -->
+  <script>
+    let nomeDoUsuario = null;
+
+    function falar(texto) {
+      const synth = window.speechSynthesis;
+      const voz = new SpeechSynthesisUtterance(texto);
+      const vozes = synth.getVoices();
+      const vozBR = vozes.find(v => v.lang === 'pt-BR');
+      if (vozBR) {
+        voz.voice = vozBR;
+        voz.pitch = 1;
+        voz.rate = 0.95;
+      }
+
+      const indicador = document.getElementById('voice-indicator');
+      voz.onstart = () => indicador.classList.add('talking');
+      voz.onend = () => indicador.classList.remove('talking');
+
+      synth.speak(voz);
+    }
+
+    function processarMensagem(texto) {
+      const regexNome = /(?:me chamo|sou o|sou a)\s+([A-Za-zÀ-ÿ]+)/i;
+      const resultado = texto.match(regexNome);
+
+      if (resultado) {
+        nomeDoUsuario = resultado[1];
+        const resposta = `Prazer em te conhecer, ${nomeDoUsuario}. Como posso te ajudar hoje?`;
+        falar(resposta);
+        return;
+      }
+
+      let resposta = nomeDoUsuario
+        ? `Tudo bem, ${nomeDoUsuario}? Em que posso te ajudar agora?`
+        : `Olá! Eu sou o Edu, posso te ajudar em alguma coisa? Me diga seu nome, se preferir.`;
+
+      falar(resposta);
+    }
+
+    function iniciarReconhecimento() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Seu navegador não suporta reconhecimento de voz.");
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "pt-BR";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.start();
+
+      recognition.onstart = () => {
+        falar("Pode falar, estou ouvindo.");
+      };
+
+      recognition.onresult = (event) => {
+        const texto = event.results[0][0].transcript;
+        processarMensagem(texto);
+      };
+
+      recognition.onerror = (event) => {
+        console.error("Erro ao reconhecer fala:", event);
+        falar("Desculpe, não entendi. Pode repetir?");
+      };
+    }
+
+    window.speechSynthesis.onvoiceschanged = () => {};
+  </script>
 </body>
-</html>
+  </html>
