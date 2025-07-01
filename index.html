@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EDU - Inteligência Artificial Educacional</title>
+  <title>Chat com Edu</title>
   <style>
     :root {
       --verde-escuro: #004d40;
@@ -11,6 +11,7 @@
       --verde-claro: #e0f2f1;
       --branco: #ffffff;
     }
+
     body {
       margin: 0;
       padding: 0;
@@ -22,103 +23,42 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      text-align: center;
-    }
-
-    header {
-      width: 100%;
-      padding: 30px 10px;
-      background-color: var(--verde-medio);
-      color: var(--branco);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.3rem;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      font-weight: normal;
-      margin: 0;
     }
 
     .chat-container {
-      width: 95%;
-      max-width: 800px;
-      height: 600px;
-      margin-top: 40px;
+      width: 100%;
+      max-width: 1000px;
+      height: 100vh;
       box-shadow: 0 0 15px rgba(0, 77, 64, 0.2);
-      border-radius: 12px;
+      border-radius: 0;
       overflow: hidden;
       background-color: var(--branco);
-      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .chat-container {
+        width: 95%;
+        height: 600px;
+        border-radius: 12px;
+      }
     }
 
     iframe {
       border: none;
       width: 100%;
       height: 100%;
-      border-radius: 12px;
     }
-
-    .video-container {
-      margin-top: 40px;
-      width: 95%;
-      max-width: 1000px;
-      height: auto;
-    }
-
-    video {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 77, 64, 0.3);
-    }
-
-    .reload-button {
-      margin: 20px 10px;
-      padding: 12px 30px;
-      font-size: 1rem;
-      background-color: var(--verde-medio);
-      color: var(--branco);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .reload-button:hover {
-      background-color: var(--verde-escuro);
-    }
-
   </style>
 
-  <!-- Inserindo o ElevenLabs convai widget oficial modo voz -->
+  <!-- ElevenLabs botão de voz -->
   <elevenlabs-convai agent-id="agent_01jyrqq3jhf6sahwjjhsmks3vy"></elevenlabs-convai>
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-
 </head>
 <body>
-  <header>
-    <h1>BEM-VINDO AO EDU</h1>
-    <h2>INTELIGÊNCIA ARTIFICIAL DA GERÊNCIA DE EDUCAÇÃO DE SONORA</h2>
-  </header>
 
   <div class="chat-container">
     <iframe src="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/30/14/20250530143143-HCRPYN8Y.json" title="Edu Chat"></iframe>
   </div>
-
-  <div class="video-container">
-    <video autoplay muted loop>
-      <source src="animacoes/Violeta e Verde Empresa Apresentação Animada Empresarial de Startup.mp4" type="video/mp4" />
-      Seu navegador não suporta vídeos HTML5.
-    </video>
-  </div>
-
-  <button class="reload-button" onclick="location.reload()">Nova Conversa</button>
 
 </body>
 </html>
